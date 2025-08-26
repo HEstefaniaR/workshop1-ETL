@@ -27,10 +27,11 @@ def transform(df):
     dim_seniority = df[['seniority']].drop_duplicates().reset_index(drop=True)
 
     dim_date = df[['application_date']].drop_duplicates().reset_index(drop=True)
-    dim_date['date_id'] = dim_date['application_date'].dt.strftime('%Y%m%d').astype(int)
-    dim_date['year'] = dim_date['application_date'].dt.year
-    dim_date['month'] = dim_date['application_date'].dt.month
-    dim_date['day'] = dim_date['application_date'].dt.day
+    dim_date['application_date'] = pd.to_datetime(dim_date['application_date']).dt.date
+    dim_date['date_id'] = dim_date['application_date'].apply(lambda x: int(x.strftime('%Y%m%d')))
+    dim_date['year'] = pd.to_datetime(dim_date['application_date']).dt.year
+    dim_date['month'] = pd.to_datetime(dim_date['application_date']).dt.month
+    dim_date['day'] = pd.to_datetime(dim_date['application_date']).dt.day
     
 
     # Fact table
@@ -38,6 +39,15 @@ def transform(df):
         'first_name','last_name','email','country','technology','seniority',
         'application_date','yoe','code_challenge_score','technical_interview_score','hired_flag'
     ]]
+
+    print("=== DIMENSIONS SAMPLE ===")
+    print(dim_candidate.head())
+    print(dim_country.head())
+    print(dim_technology.head())
+    print(dim_seniority.head())
+    print(dim_date.head())
+    print("=== FACT SAMPLE ===")
+    print(fact_application.head())
 
     return {
         'dim_candidate': dim_candidate,

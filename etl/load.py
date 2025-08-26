@@ -76,14 +76,14 @@ def load_dimension(df: pd.DataFrame, table: str, key_col: str):
     conn = get_conn()
     cursor = conn.cursor()
 
-    cols = ', '.join([c for c in df.columns if not c.endswith('_id')])
-    placeholders = ', '.join(['%s'] * len(cols.split(', ')))
-    insert_sql = f"INSERT IGNORE INTO {table} ({cols}) VALUES ({placeholders})"
+    cols = ', '.join(df.columns)  
+    placeholders = ', '.join(['%s'] * len(df.columns))
+    insert_sql = f"INSERT INTO {table} ({cols}) VALUES ({placeholders})"
 
-    cursor.executemany(insert_sql, df[[c for c in df.columns if not c.endswith('_id')]].values.tolist())
+    cursor.executemany(insert_sql, df.values.tolist())
     conn.commit()
 
-    cursor.execute(f"SELECT {key_col}, {cols} FROM {table}")
+    cursor.execute(f"SELECT * FROM {table}")
     rows = cursor.fetchall()
     colnames = [desc[0] for desc in cursor.description]
     dim_db = pd.DataFrame(rows, columns=colnames)
@@ -105,7 +105,8 @@ def load_fact(fact_df: pd.DataFrame, dim_dfs: dict):
         .merge(dim_dfs['dim_country'], on='country', how='left') \
         .merge(dim_dfs['dim_technology'], on='technology', how='left') \
         .merge(dim_dfs['dim_seniority'], on='seniority', how='left') \
-        .merge(dim_dfs['dim_date'][['date_id','application_date']], on='application_date', how='left')
+        .merge(dim_dfs['dim_date'][['date_id','application_date']], 
+               on='application_date', how='left')
 
     fact = fact[[
         'candidate_id','country_id','technology_id','seniority_id',
