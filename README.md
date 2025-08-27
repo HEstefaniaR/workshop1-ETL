@@ -62,8 +62,8 @@ The design follows a **Star Schema**:
 ## How to run the project
 1. **Clone the repository**  
    ```bash
-   git clone <your-repo-url>
-   cd <your-repo-name>
+   git clone https://github.com/HEstefaniaR/workshop1-ETL
+   cd workshop1-ETL
    ```
 
 2.	Install dependencies: It is recommended to use a virtual environment.
