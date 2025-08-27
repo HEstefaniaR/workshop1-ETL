@@ -40,13 +40,13 @@ def transform(df):
         'application_date','yoe','code_challenge_score','technical_interview_score','hired_flag'
     ]]
 
-    print("=== DIMENSIONS SAMPLE ===")
+    print("DIMENSIONS SAMPLE")
     print(dim_candidate.head())
     print(dim_country.head())
     print(dim_technology.head())
     print(dim_seniority.head())
     print(dim_date.head())
-    print("=== FACT SAMPLE ===")
+    print("FACT SAMPLE")
     print(fact_application.head())
 
     return {

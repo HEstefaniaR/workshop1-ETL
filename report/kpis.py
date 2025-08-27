@@ -4,7 +4,7 @@ import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '../etl'))
 from connection import get_conn
 
-# Contrataciones por tecnología
+# Hires by Technology
 def hires_by_technology():
     conn = get_conn()
     query = """
@@ -19,7 +19,7 @@ def hires_by_technology():
     conn.close()
     return df
 
-# Contrataciones por año
+# Hires by Year
 def hires_by_year():
     conn = get_conn()
     query = """
@@ -34,7 +34,7 @@ def hires_by_year():
     conn.close()
     return df
 
-# Contrataciones por seniority
+# Hires by Seniority
 def hires_by_seniority():
     conn = get_conn()
     query = """
@@ -49,7 +49,7 @@ def hires_by_seniority():
     conn.close()
     return df
 
-# Contrataciones por país sobre los años (USA, Brasil, Colombia, Ecuador)
+# Hires by Country and Year (USA, Brazil, Colombia, Ecuador)
 def hires_by_country_year():
     conn = get_conn()
     query = """
@@ -66,7 +66,7 @@ def hires_by_country_year():
     conn.close()
     return df
 
-# Tasa de contratación total
+# Overall Hire Rate
 def hire_rate():
     conn = get_conn()
     query = """
@@ -78,7 +78,7 @@ def hire_rate():
     conn.close()
     return df
 
-# Proporción de candidatos por tecnología vs contratados
+# Candidate proportion by Technology vs Hired
 def tech_candidate_ratio():
     conn = get_conn()
     query = """
