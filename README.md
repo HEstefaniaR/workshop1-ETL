@@ -2,7 +2,10 @@
 **Made by**: Estefanía Hernández Rojas
 ## ETL pipeline
 The goal of this project is to build ETL pipeline: extract from a CSV, transform it intro a Dimensional Data Model, load it into a Data Warehouse and generate reports with KPIs and visualizations directly from the DW. 
-<img width="751" height="241" alt="workshop 1 Diagram" src="https://github.com/user-attachments/assets/473a1f3d-d711-4867-a94a-62b52943d663" />
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/473a1f3d-d711-4867-a94a-62b52943d663" alt="workshop 1 Diagram" width="751">
+</p>
 
 ## Star Schema
 The design follows a **Star Schema**:
@@ -13,7 +16,10 @@ The design follows a **Star Schema**:
   - `dim_technology` (technology)  
   - `dim_seniority` (seniority)  
   - `dim_date` (application date, year, month, day)
-<img width="751" height="241" alt="workshop 1 Diagram" src="https://github.com/HEstefaniaR/workshop1-ETL/blob/main/diagrams/Star%20Schema.png" />
+
+<p align="center">
+  <img src="https://github.com/HEstefaniaR/workshop1-ETL/blob/main/diagrams/Star%20Schema.png" alt="Star Schema" width="751">
+</p>
 
 ## Project Structure
 ```
