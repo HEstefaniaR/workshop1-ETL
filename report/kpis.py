@@ -58,7 +58,7 @@ def hires_by_country_year():
     JOIN dim_country c ON f.country_id = c.country_id
     JOIN dim_date d ON f.date_id = d.date_id
     WHERE f.hired_flag = 1
-      AND c.country IN ('USA', 'Brazil', 'Colombia', 'Ecuador')
+      AND c.country IN ('United States of America', 'Brazil', 'Colombia', 'Ecuador')
     GROUP BY d.year, c.country
     ORDER BY d.year, c.country
     """
