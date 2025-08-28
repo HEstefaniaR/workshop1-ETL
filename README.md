@@ -7,6 +7,16 @@ The goal of this project is to build ETL pipeline: extract from a CSV, transform
   <img src="https://github.com/user-attachments/assets/473a1f3d-d711-4867-a94a-62b52943d663" alt="workshop 1 Diagram" width="751">
 </p>
 
+1. **Extract**  
+   - Source: Raw CSV file with application data.  
+2. **Transform**  
+   - Data cleaning and normalization using **Python & Pandas**.  
+   - Creation of surrogate keys for each dimension.  
+   - Splitting the dataset into **dimension tables** and the **fact table**.  
+3. **Load**  
+   - Loading into MySQL Data Warehouse.  
+   - Dimensions are inserted first, followed by the fact table with foreign keys.  
+
 ## Star Schema
 The design follows a **Star Schema**:
 - **Fact Table:** `fact_application` (contains candidate applications, scores, hire flag)
@@ -20,6 +30,8 @@ The design follows a **Star Schema**:
 <p align="center">
   <img src="https://github.com/HEstefaniaR/workshop1-ETL/blob/main/diagrams/Star%20Schema.png" alt="Star Schema" width="751">
 </p>
+
+This design allows for efficient joins between fact and dimensions, enabling detailed analysis across multiple perspectives: time, geography, technology, and seniority.
 
 ## Project Structure
 ```
@@ -58,7 +70,34 @@ The design follows a **Star Schema**:
 - **`report/`**: Contains scripts for generating KPIs and visualizations.  
   - `kpis.py`: defines SQL queries to extract metrics from the DW.  
   - `visualization.py`: creates plots (e.g., hires by technology, seniority, country).  
-  - `outputs/`: stores generated visualization images.  
+  - `outputs/`: stores generated visualization images.
+ 
+## Key Decisions
+### KPIs
+The following KPIs were selected as the main business questions to be answered:  
+
+- **Hires by Technology**  
+  Understand which technologies are most in demand.  
+
+- **Hires by Year**  
+  Analyze how hiring evolves over time.  
+
+- **Hires by Seniority**  
+  Evaluate the focus of hiring efforts (junior vs senior roles).  
+
+- **Hires by Country Over Time** (focused on USA, Brazil, Colombia, Ecuador)  
+  Compare hiring trends across regions.  
+
+- **Hiring Rate**  
+  Percentage of candidates hired vs total applicants.  
+
+- **Applicants vs Hires by Technology**  
+  Compare supply of applicants against actual hiring demand per technology.  
+
+## Visualizations
+The queries were implemented in **MySQL** and visualized using **Python (matplotlib)**.  
+These visualizations present clear insights into hiring trends across technology, seniority, geography, and time.  
+
 ## How to run the project
 1. **Clone the repository**  
    ```bash
