@@ -41,15 +41,9 @@ def plot_hires_by_seniority():
     plt.tight_layout()
     plt.show()
 
-# Hires by Country and Year (debug)
+# Hires by Country and Year
 def plot_hires_by_country_year():
     df = hires_by_country_year()
-    if df.empty:
-        print("Warning: Hires by Country and Year dataframe is empty!")
-        return
-
-    df = df[(df['year'] >= 2020) & (df['year'] <= 2025)]
-
     plt.figure(figsize=(10,6))
     sns.lineplot(x='year', y='hires', hue='country', data=df, marker='o')
     plt.title('Hires by Country and Year')
